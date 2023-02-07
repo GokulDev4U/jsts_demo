@@ -14,9 +14,10 @@ import { Feature } from "ol";
 import Stroke from "ol/style/Stroke";
 import Fill from "ol/style/Fill";
 import "./App.css";
+import { useRef } from "react";
 
 function App() {
-  // const mapElement = useRef(null);
+  const mapElement = useRef(null);
 
   const source = new VectorSource();
 
@@ -109,14 +110,14 @@ function App() {
 
   const map = new Map({
     layers: [rasterLayer, vectorLayer],
-    target: document.getElementById("map"),
+    // target: document.getElementById("map"),
     view: new View({
       center: fromLonLat([-96.6345990807462, 32.81890764151014]),
       zoom: 9,
     }),
   });
 
-  // map.setTarget(mapElement.current);
+  map.setTarget(mapElement.current);
 
   return (
     <div>
@@ -136,9 +137,9 @@ function App() {
       </button>
 
       <div
-        id="map"
+        // id="map"
         className="map"
-        // ref={mapElement}
+        ref={mapElement}
       ></div>
     </div>
   );
